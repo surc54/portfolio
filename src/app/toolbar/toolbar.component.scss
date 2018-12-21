@@ -1,0 +1,28 @@
+mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+
+    > div.container {
+        display: flex;
+        flex-flow: row nowrap;
+
+        span.title {
+            margin-top: 5px;
+        }
+
+        span.spacer {
+            flex: 1 auto;
+        }
+    }
+
+    > img#logo {
+        height: 90%;
+        float: right;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
