@@ -5,12 +5,14 @@ mat-toolbar {
     width: 100%;
     z-index: 3;
 
-    > div.container {
+    > div#wrapper {
         display: flex;
         flex-flow: row nowrap;
+        align-items: center;
+        justify-content: start;
 
-        span.title {
-            margin-top: 5px;
+        button.menu-btn {
+            margin-right: 10px;
         }
 
         span.spacer {
