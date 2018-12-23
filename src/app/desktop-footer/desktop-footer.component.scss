@@ -1,0 +1,11 @@
+.wrapper {
+    background: linear-gradient(to bottom right, #FFAA00, #FFDA1B);
+    color: white;
+    div.container {
+        min-height: 150px;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: start;
+    }
+}

@@ -1,11 +1,11 @@
 <mat-toolbar class="mat-elevation-z3">
-    <div [class.container]="!handset" id="wrapper">
-        <button mat-icon-button class="menu-btn" *ngIf="handset">
+    <div [class.container]="!breakpoint.handset" id="wrapper">
+        <button mat-icon-button class="menu-btn" *ngIf="breakpoint.handset">
             <mat-icon>menu</mat-icon>
         </button>
         <a class="title" routerLink="">Adithya Haridas</a>
         <span class="spacer"></span>
-        <div class="links" *ngIf="!handset">
+        <div class="links" *ngIf="!breakpoint.handset">
             <button mat-button color="accent" routerLink="resume" routerLinkActive="active" [disabled]="router.isActive('resume')">
                 Resume
             </button>

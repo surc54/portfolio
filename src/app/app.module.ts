@@ -11,6 +11,7 @@ import { ResumeComponent } from './resume/resume.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ContactComponent } from './contact/contact.component';
 import { LinksComponent } from './links/links.component';
+import { DesktopFooterComponent } from './desktop-footer/desktop-footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LinksComponent } from './links/links.component';
     ResumeComponent,
     PortfolioComponent,
     ContactComponent,
-    LinksComponent
+    LinksComponent,
+    DesktopFooterComponent
   ],
   imports: [
     BrowserModule,

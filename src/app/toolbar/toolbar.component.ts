@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import $ from 'jquery';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Router} from '@angular/router';
+import {BreakpointService} from '../breakpoint.service';
 
 @Component({
     selector: 'app-toolbar',
@@ -10,19 +10,12 @@ import {Router} from '@angular/router';
 })
 export class ToolbarComponent implements OnInit {
 
-    handset = false;
-
-    constructor(breakpointObserver: BreakpointObserver, protected router: Router) {
-        breakpointObserver.observe([
-            '(max-width: 780px)'
-        ]).subscribe(result => {
-            this.handset = result.matches;
-        });
+    constructor(protected router: Router, protected breakpoint: BreakpointService) {
     }
 
 
     ngOnInit() {
-        let last = $("mat-toolbar").find("div.container").find("div.links").last();
+        let last = $('mat-toolbar').find('div.container').find('div.links').last();
         let defaultRightMarginForToolbarLinks = last.css('margin-right');
 
         // Initial adjust on component load
@@ -30,8 +23,8 @@ export class ToolbarComponent implements OnInit {
             this.adjustToolbarLinkMargin(window.innerWidth, defaultRightMarginForToolbarLinks);
         });
 
-        $(window).on("resize", e => {
-            if (this.handset) {
+        $(window).on('resize', e => {
+            if (this.breakpoint.handset) {
                 return;
             }
             this.adjustToolbarLinkMargin(e.target.innerWidth, defaultRightMarginForToolbarLinks);
@@ -42,18 +35,17 @@ export class ToolbarComponent implements OnInit {
     adjustToolbarLinkMargin(
         width: number,
         defaultRightMarginForToolbarLinks: number,
-        last = $("mat-toolbar").find("div.container").find("div.links").last(),
-        img = $("mat-toolbar").find("img#logo"),
-
+        last = $('mat-toolbar').find('div.container').find('div.links').last(),
+        img = $('mat-toolbar').find('img#logo'),
     ) {
-        if (this.handset) {
+        if (this.breakpoint.handset) {
             return;
         }
 
         let imgWidth = img.width();
 
         let mRight = last.css('margin-right').toString();
-        let lWidth = last.width() + pxToNumber(last.css("padding-left")) + pxToNumber(last.css("padding-right"));
+        let lWidth = last.width() + pxToNumber(last.css('padding-left')) + pxToNumber(last.css('padding-right'));
         let toolbarEnd = lWidth + last.offset().left + pxToNumber(mRight);
 
         let imgBegin = width - imgWidth;
@@ -65,7 +57,7 @@ export class ToolbarComponent implements OnInit {
         } else {
             margin = defaultRightMarginForToolbarLinks;
         }
-        last.css("margin-right", margin);
+        last.css('margin-right', margin);
     }
 }
 

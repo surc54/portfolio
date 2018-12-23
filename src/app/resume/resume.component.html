@@ -1,6 +1,16 @@
 <div class="container">
     <h1 class="s-title">Resume</h1>
+    <p class="s-subtitle">
+        Current resume
+    </p>
     <div id="resume-pdf">
-
+        <p class="mat-error">Cannot view PDF</p>
+    </div>
+    <div class="actions">
+        <a class="download" download mat-flat-button color="accent" href="/assets/resume.pdf">
+            <mat-icon>arrow_downward</mat-icon> Download PDF
+        </a>
     </div>
 </div>
+
+<app-desktop-footer *ngIf="!breakpoint.handset"></app-desktop-footer>
