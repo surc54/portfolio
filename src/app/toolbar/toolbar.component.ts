@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import $ from 'jquery';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-toolbar',
@@ -11,7 +12,7 @@ export class ToolbarComponent implements OnInit {
 
     handset = false;
 
-    constructor(breakpointObserver: BreakpointObserver) {
+    constructor(breakpointObserver: BreakpointObserver, protected router: Router) {
         breakpointObserver.observe([
             '(max-width: 780px)'
         ]).subscribe(result => {

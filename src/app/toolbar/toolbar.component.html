@@ -3,19 +3,19 @@
         <button mat-icon-button class="menu-btn" *ngIf="handset">
             <mat-icon>menu</mat-icon>
         </button>
-        <span class="title">Adithya Haridas</span>
+        <a class="title" routerLink="">Adithya Haridas</a>
         <span class="spacer"></span>
         <div class="links" *ngIf="!handset">
-            <button mat-button color="accent" routerLink="resume" routerLinkActive="active">
+            <button mat-button color="accent" routerLink="resume" routerLinkActive="active" [disabled]="router.isActive('resume')">
                 Resume
             </button>
-            <button mat-button color="accent" routerLink="portfolio" routerLinkActive="active">
+            <button mat-button color="accent" routerLink="portfolio" routerLinkActive="active" [disabled]="router.isActive('portfolio')">
                 Portfolio
             </button>
-            <button mat-button color="accent" routerLink="contact" routerLinkActive="active">
+            <button mat-button color="accent" routerLink="contact" routerLinkActive="active" [disabled]="router.isActive('contact')">
                 Contact
             </button>
-            <button mat-button color="accent" routerLink="links" routerLinkActive="active">
+            <button mat-button color="accent" routerLink="links" routerLinkActive="active" [disabled]="router.isActive('links')">
                 Links
             </button>
         </div>

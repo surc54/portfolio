@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 mat-toolbar {
     position: fixed;
     top: 0;
@@ -15,8 +17,19 @@ mat-toolbar {
             margin-right: 10px;
         }
 
+        a.title {
+            text-decoration: none;
+            color: $dark-primary-text;
+        }
+
         span.spacer {
             flex: 1 auto;
+        }
+
+        div.links {
+            button.active {
+
+            }
         }
     }
 

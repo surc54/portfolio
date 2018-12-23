@@ -7,12 +7,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialImportsModule } from './material-imports.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TestComponent } from './test/test.component';
+import { ResumeComponent } from './resume/resume.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { ContactComponent } from './contact/contact.component';
+import { LinksComponent } from './links/links.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
-    TestComponent
+    TestComponent,
+    ResumeComponent,
+    PortfolioComponent,
+    ContactComponent,
+    LinksComponent
   ],
   imports: [
     BrowserModule,

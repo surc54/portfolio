@@ -1,12 +1,4 @@
 <app-toolbar></app-toolbar>
 <div class="content">
-    <div class="container" style="padding-top: 50px;">
-        <button mat-raised-button routerLink="test" [color]="rla.isActive ? 'accent' : 'primary'" routerLinkActive #rla="routerLinkActive">
-            Go to test {{rla.isActive ? "(active)" : ""}}
-        </button>
-        <a mat-raised-button routerLink="" [color]="rla.isActive ? 'accent' : 'primary'" routerLinkActive #rla="routerLinkActive">
-            Go to root {{rla.isActive ? "(active)" : "" }}
-        </a>
-    </div>
+    <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>
