@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {BreakpointService} from '../breakpoint.service';
 
 @Component({
-  selector: 'app-portfolio',
-  templateUrl: './portfolio.component.html',
-  styleUrls: ['./portfolio.component.scss']
+    selector: 'app-portfolio',
+    templateUrl: './portfolio.component.html',
+    styleUrls: ['./portfolio.component.scss']
 })
 export class PortfolioComponent implements OnInit {
 
-  constructor() { }
+    constructor(protected breakpoint: BreakpointService) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

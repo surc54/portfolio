@@ -4,10 +4,14 @@
         Current resume
     </p>
     <div id="resume-pdf">
-        <p class="mat-error">Cannot view PDF</p>
+        <h2>Cannot view PDF</h2>
+        <p>Download file using link below</p>
     </div>
-    <div class="actions">
-        <a class="download" download mat-flat-button color="accent" href="/assets/resume.pdf">
+    <div class="actions" [class.mobile]="breakpoint.handset">
+        <p class="pdf-warning">
+            If PDF is not viewable on this page, download the file using the link provided.
+        </p>
+        <a class="download" download="resume_adithya_haridas.pdf" mat-flat-button color="accent" href="/assets/resume.pdf">
             <mat-icon>arrow_downward</mat-icon> Download PDF
         </a>
     </div>

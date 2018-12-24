@@ -6,12 +6,14 @@ mat-toolbar {
     left: 0;
     width: 100%;
     z-index: 3;
+    height: 64px;
 
     > div#wrapper {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
-        justify-content: start;
+        justify-content: stretch;
+        //width: 100%; // cant because of div.container
 
         button.menu-btn {
             margin-right: 10px;
@@ -30,6 +32,10 @@ mat-toolbar {
             button.active {
 
             }
+        }
+
+        &.remove-left-padding {
+            padding-left: 0;
         }
     }
 

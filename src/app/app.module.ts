@@ -12,6 +12,8 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ContactComponent } from './contact/contact.component';
 import { LinksComponent } from './links/links.component';
 import { DesktopFooterComponent } from './desktop-footer/desktop-footer.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { MobileFooterComponent } from './mobile-footer/mobile-footer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { DesktopFooterComponent } from './desktop-footer/desktop-footer.componen
     PortfolioComponent,
     ContactComponent,
     LinksComponent,
-    DesktopFooterComponent
+    DesktopFooterComponent,
+    SidenavComponent,
+    MobileFooterComponent
   ],
   imports: [
     BrowserModule,

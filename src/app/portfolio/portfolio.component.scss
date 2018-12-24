@@ -1,0 +1,10 @@
+:host {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+}
+
+div.container {
+    flex: 1 auto;
+    padding-bottom: 100px;
+}

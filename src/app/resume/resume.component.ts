@@ -14,8 +14,9 @@ export class ResumeComponent implements OnInit {
 
   ngOnInit() {
       PDFObject.embed("/assets/resume.pdf", "#resume-pdf", {
-          fallbackLink: `Your browser cannot view this PDF directly on this page.<br>
-                            Download the file using the button below.`
+          // fallbackLink: `Your browser cannot view this PDF directly on this page.<br>
+          //                   Download the file using the button below.`,
+          fallbackLink: false
       });
   }
 

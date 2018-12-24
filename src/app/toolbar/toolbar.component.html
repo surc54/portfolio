@@ -1,11 +1,11 @@
 <mat-toolbar class="mat-elevation-z3">
-    <div [class.container]="!breakpoint.handset" id="wrapper">
-        <button mat-icon-button class="menu-btn" *ngIf="breakpoint.handset">
+    <div [class.container]="!breakpoint.handset || true" [class.remove-left-padding]="breakpoint.handset" id="wrapper">
+        <button mat-icon-button class="menu-btn" *ngIf="breakpoint.handset" (click)="global.toggleSideNav()" @menuButtonEntry>
             <mat-icon>menu</mat-icon>
         </button>
         <a class="title" routerLink="">Adithya Haridas</a>
         <span class="spacer"></span>
-        <div class="links" *ngIf="!breakpoint.handset">
+        <div class="links" *ngIf="!breakpoint.handset" @linksEntry (@linksEntry.done)="linksAnimDone($event)">
             <button mat-button color="accent" routerLink="resume" routerLinkActive="active" [disabled]="router.isActive('resume')">
                 Resume
             </button>

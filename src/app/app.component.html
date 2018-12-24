@@ -1,4 +1,5 @@
 <app-toolbar></app-toolbar>
+<app-sidenav *ngIf="breakpoint.handset" @ngIfAnimation></app-sidenav>
 <div class="content">
     <router-outlet></router-outlet>
 </div>

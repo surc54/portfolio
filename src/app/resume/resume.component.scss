@@ -1,6 +1,26 @@
-.pdfobject-container {
-    height: 40rem;
-    // border: 1rem solid rgba(0, 0, 0, .1);
+// .pdfobject-container {
+//     height: 40rem;
+//     background: rgba(0, 0, 0, 0.1);
+//     // border: 1rem solid rgba(0, 0, 0, .1);
+// }
+
+// Incase device does not display PDF inline
+#resume-pdf {
+    height: 70vh;
+    max-height: 40rem;
+    background: rgba(0, 0, 0, 0.1);
+    color: #909090;
+
+    border-radius: 5px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    > h2 {
+        margin-bottom: 0px;
+    }
 }
 
 :host {
@@ -18,9 +38,31 @@ div.actions {
     margin-top: 20px;
 
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: flex-end;
+    align-items: center;
 
-    a.download {
+    p.pdf-warning {
+        color: #909090;
+        margin: 0 20px 0 0;
+        text-align: right;
+    }
+
+
+    &.mobile {
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        p.pdf-warning {
+            color: #909090;
+            margin: 0 0 20px 0;
+            text-align: justify;
+        }
+
+        a.download {
+            display: block;
+            width: 100%;
+        }
     }
 }

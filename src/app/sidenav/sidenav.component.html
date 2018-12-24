@@ -1,0 +1,27 @@
+<div class="backdrop" *ngIf="global.sideNavStatus" @backdropAnimation></div>
+
+<div class="wrapper mat-elevation-z2" *ngIf="global.sideNavStatus" @sideNavAnimation>
+    <mat-action-list class="navlist">
+        <button mat-list-item routerLink="resume" routerLinkActive="active" [disabled]="router.isActive('resume')"
+                (click)="global.toggleSideNav()">
+            Resume
+        </button>
+        <button mat-list-item routerLink="portfolio" routerLinkActive="active" [disabled]="router.isActive('portfolio')"
+                (click)="global.toggleSideNav()">
+            Portfolio
+        </button>
+        <button mat-list-item routerLink="contact" routerLinkActive="active" [disabled]="router.isActive('contact')"
+                (click)="global.toggleSideNav()">
+            Contact
+        </button>
+        <button mat-list-item routerLink="links" routerLinkActive="active" [disabled]="router.isActive('links')"
+                (click)="global.toggleSideNav()">
+            Links
+        </button>
+    </mat-action-list>
+
+    <div class="spacer"></div>
+
+    <app-mobile-footer></app-mobile-footer>
+</div>
+
