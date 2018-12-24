@@ -1,6 +1,6 @@
 <mat-toolbar class="mat-elevation-z3">
     <div [class.container]="!breakpoint.handset || true" [class.remove-left-padding]="breakpoint.handset" id="wrapper">
-        <button mat-icon-button class="menu-btn" *ngIf="breakpoint.handset" (click)="global.toggleSideNav()" @menuButtonEntry>
+        <button mat-icon-button class="menu-btn" *ngIf="breakpoint.handset" (click)="global.toggleSideNav()" @menuButtonEntry aria-label="menu">
             <mat-icon>menu</mat-icon>
         </button>
         <a class="title" routerLink="">Adithya Haridas</a>

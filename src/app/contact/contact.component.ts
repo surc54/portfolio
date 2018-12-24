@@ -8,7 +8,7 @@ import {BreakpointService} from '../breakpoint.service';
 })
 export class ContactComponent implements OnInit {
 
-    constructor(protected breakpoint: BreakpointService) {
+    constructor(public breakpoint: BreakpointService) {
     }
 
     ngOnInit() {

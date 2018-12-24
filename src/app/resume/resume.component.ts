@@ -10,7 +10,7 @@ import {BreakpointService} from '../breakpoint.service';
 })
 export class ResumeComponent implements OnInit {
 
-  constructor(protected breakpoint: BreakpointService) { }
+  constructor(public breakpoint: BreakpointService) { }
 
   ngOnInit() {
       PDFObject.embed("/assets/resume.pdf", "#resume-pdf", {

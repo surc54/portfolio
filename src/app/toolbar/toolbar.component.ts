@@ -37,7 +37,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class ToolbarComponent implements OnInit {
 
 
-    constructor(protected router: Router, protected breakpoint: BreakpointService, protected global: GlobalService) {
+    constructor(public router: Router, public breakpoint: BreakpointService,
+                public global: GlobalService) {
     }
 
 

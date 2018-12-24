@@ -8,7 +8,7 @@ import {BreakpointService} from '../breakpoint.service';
 })
 export class PortfolioComponent implements OnInit {
 
-    constructor(protected breakpoint: BreakpointService) {
+    constructor(public breakpoint: BreakpointService) {
     }
 
     ngOnInit() {

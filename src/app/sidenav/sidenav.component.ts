@@ -26,7 +26,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class SidenavComponent implements OnInit {
 
-    constructor(protected router: Router, protected global: GlobalService) {
+    constructor(public router: Router, public global: GlobalService) {
     }
 
     ngOnInit() {
