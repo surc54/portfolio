@@ -1,4 +1,4 @@
-<mat-toolbar class="mat-elevation-z3">
+<mat-toolbar class="mat-elevation-z3" [class.dark]="global.dark" [color]="global.dark ? 'primary' : 'default'">
     <div [class.container]="!breakpoint.handset || true" [class.remove-left-padding]="breakpoint.handset" id="wrapper">
         <button mat-icon-button class="menu-btn" *ngIf="breakpoint.handset" (click)="global.toggleSideNav()" @menuButtonEntry aria-label="menu">
             <mat-icon>menu</mat-icon>
@@ -21,5 +21,5 @@
         </div>
     </div>
 
-    <img src="../../assets/dumb-logo.svg" alt="Logo" id="logo">
+    <img [src]="global.dark ? '/assets/dumb-logo-dark.svg' : '/assets/dumb-logo.svg'" alt="Logo" id="logo">
 </mat-toolbar>

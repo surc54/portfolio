@@ -16,7 +16,7 @@ import {animateChild, query, transition, trigger} from '@angular/animations';
 })
 export class AppComponent {
 
-    constructor(@Inject(BreakpointService) protected breakpoint: BreakpointService) {
+    constructor(@Inject(BreakpointService) public breakpoint: BreakpointService) {
     }
 
 

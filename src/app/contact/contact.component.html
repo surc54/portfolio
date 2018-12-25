@@ -1,8 +1,33 @@
 <div class="container">
     <h1 class="s-title">Contact</h1>
     <p class="s-subtitle">
-        Current resume
+        This page contains information on how to contact me. When attempting to reach me, clearly state your intentions
+        to avoid being marked as spam. Responses are not guaranteed.
     </p>
+    <a href="mailto:adithyah54@gmail.com" class="contact-link mat-card mat-elevation-z3">
+        <strong>
+            Email
+        </strong>
+        <p>
+            adithyah54@gmail.com
+        </p>
+    </a>
+    <a class="contact-link mat-card mat-elevation-z3 error">
+        <strong>
+            Phone
+        </strong>
+        <p>
+            Unavailable
+        </p>
+    </a>
+    <a class="contact-link mat-card mat-elevation-z3 error">
+        <strong>
+            LinkedIn
+        </strong>
+        <p>
+            Unavailable
+        </p>
+    </a>
 </div>
 
-<app-desktop-footer *ngIf="!breakpoint.handset"></app-desktop-footer>
+<app-desktop-footer *ngIf="!breakpoint.handset" @animateChildren></app-desktop-footer>

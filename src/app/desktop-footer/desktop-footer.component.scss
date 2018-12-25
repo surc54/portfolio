@@ -1,5 +1,8 @@
+@import "../../theme-colors";
+
 .wrapper {
     background: linear-gradient(to bottom right, #FFAA00, #FFDA1B);
+    //background: linear-gradient(to bottom right, map_get($surc-orange, 500), #FFDA1B);
     color: white;
     div.container {
         min-height: 150px;

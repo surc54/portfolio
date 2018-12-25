@@ -1,8 +1,50 @@
 <div class="container">
     <h1 class="s-title">Portfolio</h1>
     <p class="s-subtitle">
-        Current resume
+        This page contains links to past projects and works that highlights my skill in its respective subject.
+        Note that some projects may be incomplete.
     </p>
+    <p class="github">
+        Github Account:
+        <a href="https://www.github.com/surc54">/surc54</a>
+    </p>
+
+    <div class="work-list">
+        <mat-card class="work-card mat-elevation-z3">
+            <mat-card-title>
+                Scheduler
+            </mat-card-title>
+            <mat-card-subtitle>
+                January 13, 2019
+            </mat-card-subtitle>
+            <!--<img class="work-image" mat-card-image src="/assets/no-image.png"/>-->
+            <mat-card-content>
+                <p>
+                    Create a weekly class schedule before ONE.UF allows you to. Classes are retrieved from the course
+                    search offered on ONE.UF.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="accent">View on Github</button>
+            </mat-card-actions>
+        </mat-card>
+        <mat-card class="work-card mat-elevation-z3">
+            <mat-card-title>
+                Uno
+            </mat-card-title>
+            <mat-card-subtitle>
+                Literally never
+            </mat-card-subtitle>
+            <mat-card-content>
+                <p>
+                    Play UNO with your friends!
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="accent">View on Github</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
 </div>
 
-<app-desktop-footer *ngIf="!breakpoint.handset"></app-desktop-footer>
+<app-desktop-footer *ngIf="!breakpoint.handset" @animateChildren></app-desktop-footer>

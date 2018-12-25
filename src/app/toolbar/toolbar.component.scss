@@ -1,4 +1,5 @@
 @import '~@angular/material/theming';
+@import '../../theme-colors';
 
 mat-toolbar {
     position: fixed;
@@ -30,7 +31,8 @@ mat-toolbar {
 
         div.links {
             button.active {
-
+                background: map_get($surc-orange, 500);
+                color: white;
             }
         }
 
@@ -45,5 +47,22 @@ mat-toolbar {
         position: absolute;
         top: 0;
         right: 0;
+    }
+
+    &.dark {
+
+        > div#wrapper {
+
+            a.title {
+                color: $light-primary-text;
+            }
+
+            div.links {
+                button.active {
+                    background: white;
+                    color: #535353;
+                }
+            }
+        }
     }
 }

@@ -14,6 +14,8 @@ import { LinksComponent } from './links/links.component';
 import { DesktopFooterComponent } from './desktop-footer/desktop-footer.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MobileFooterComponent } from './mobile-footer/mobile-footer.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { MobileFooterComponent } from './mobile-footer/mobile-footer.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialImportsModule
+    MaterialImportsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

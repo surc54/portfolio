@@ -7,4 +7,57 @@
 div.container {
     flex: 1 auto;
     padding-bottom: 100px;
+
+    p.github {
+        font-size: 20px;
+
+        @media (max-width: 991px) {
+            font-size: 16px;
+        }
+    }
+
+    div.work-list {
+        //display: flex;
+        //flex-flow: row wrap;
+        //
+        //justify-content: space-evenly;
+        //justify-items: center;
+        //align-content: space-evenly;
+        //align-items: center;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 1fr);
+        grid-gap: 45px;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 50px;
+
+
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(auto-fill, 300px);
+        }
+
+        @media (min-width: 992px) {
+            grid-template-columns: repeat(auto-fill, 350px);
+
+        }
+
+        @media (min-width: 1200px) {
+
+        }
+
+
+        mat-card.work-card {
+            //margin-top: 50px;
+            display: inline-block;
+            //max-width: 350px;
+            img.work-image {
+
+            }
+
+            mat-card-actions {
+                text-align: right;
+            }
+        }
+    }
 }

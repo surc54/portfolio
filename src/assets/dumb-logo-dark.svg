@@ -2,7 +2,7 @@
   <defs>
     <style>
       .cls-1 {
-        fill: rgba(0,0,0,0.81);
+        fill: rgba(245,245,245,1);
       }
 
       .cls-2 {

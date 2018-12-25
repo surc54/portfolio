@@ -7,4 +7,24 @@
 div.container {
     flex: 1 auto;
     padding-bottom: 100px;
+
+    a.link {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+
+        max-width: 400px;
+
+        justify-content: stretch;
+        align-items: center;
+
+        height: 75px;
+        padding: 0 20px;
+        margin-top: 10px;
+
+        @media (max-width: 400px) {
+            max-width: none;
+        }
+
+    }
 }

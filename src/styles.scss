@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import "theme-colors";
 
 html, body {
     height: 100%;
@@ -48,18 +48,32 @@ body {
 }
 
 .s-subtitle {
-    margin-top: -40px;
+    margin-top: -35px;
     margin-bottom: 30px;
     font-size: 20px;
     color: #909090;
 
+    text-align: justify;
+
     @media (max-width: 991px) {
         margin-top: -20px;
+        font-size: 16px;
     }
+}
+
+a {
+    color: map_get($surc-orange, 500);
+    text-decoration: none;
 }
 
 
 * {
     box-sizing: border-box;
     transition: 0.25s;
+
+    &::selection {
+        background: map_get($surc-orange, 500);
+        color: white;
+    }
 }
+

@@ -7,4 +7,28 @@
 div.container {
     flex: 1 auto;
     padding-bottom: 100px;
+
+    a.contact-link {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 70px 1fr;
+        grid-column-gap: 20px;
+
+        justify-content: stretch;
+        align-items: center;
+
+        height: 75px;
+        padding: 0 20px;
+        margin-top: 10px;
+
+        p {
+            color: #909090;
+        }
+
+        &.error {
+            p {
+                color: #FF9B9B;
+            }
+        }
+    }
 }

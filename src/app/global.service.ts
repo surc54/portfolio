@@ -6,6 +6,9 @@ import {Injectable} from '@angular/core';
 export class GlobalService {
 
     sideNavStatus = false;
+    dark = false;
+
+    animationTiming = "cubic-bezier(0.165, 0.84, 0.44, 1)";
 
     constructor() {
     }
