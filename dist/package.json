@@ -1,0 +1,14 @@
+{
+    "name": "portfolio-dist",
+    "version": "0.0.1",
+    "description": "Distribution testing for portfolio",
+    "main": "app.js",
+    "scripts": {
+        "start": "start cmd.exe /c \"nodemon app\""
+    },
+    "author": "Adithya Haridas",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.16.4"
+    }
+}

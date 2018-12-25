@@ -16,6 +16,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { MobileFooterComponent } from './mobile-footer/mobile-footer.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ErrorNotFoundComponent } from './error-not-found/error-not-found.component';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { environment } from '../environments/environment';
     LinksComponent,
     DesktopFooterComponent,
     SidenavComponent,
-    MobileFooterComponent
+    MobileFooterComponent,
+    ErrorNotFoundComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {BreakpointService} from './breakpoint.service';
+import {animation} from '@angular/animations';
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +12,11 @@ export class GlobalService {
 
     animationTiming = "cubic-bezier(0.165, 0.84, 0.44, 1)";
 
-    constructor() {
+    desktopFooterEntryAnimation = animation([
+        
+    ]);
+
+    constructor(public breakpoint: BreakpointService) {
     }
 
     toggleSideNav() {

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BreakpointService} from '../breakpoint.service';
-import {animateChild, query, transition, trigger} from '@angular/animations';
+import {animateChild, query, transition, trigger, useAnimation} from '@angular/animations';
 
 @Component({
     selector: 'app-links',
@@ -11,7 +11,7 @@ import {animateChild, query, transition, trigger} from '@angular/animations';
             transition(':enter, :leave', [
                 query('@*', animateChild(), { optional: true })
             ])
-        ])
+        ]),
     ]
 })
 export class LinksComponent implements OnInit {

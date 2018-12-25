@@ -5,8 +5,14 @@ import {ResumeComponent} from './resume/resume.component';
 import {PortfolioComponent} from './portfolio/portfolio.component';
 import {ContactComponent} from './contact/contact.component';
 import {LinksComponent} from './links/links.component';
+import {ErrorNotFoundComponent} from './error-not-found/error-not-found.component';
+import {LandingComponent} from './landing/landing.component';
 
 const routes: Routes = [
+    {
+        path: "",
+        component: LandingComponent
+    },
     {
         path: "test",
         component: TestComponent
@@ -26,6 +32,10 @@ const routes: Routes = [
     {
         path: "links",
         component: LinksComponent
+    },
+    {
+        path: "**",
+        component: ErrorNotFoundComponent
     }
 ];
 

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {GlobalService} from '../global.service';
 
 @Component({
     selector: 'app-desktop-footer',
@@ -7,20 +8,20 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     styleUrls: ['./desktop-footer.component.scss'],
     animations: [
         trigger('desktopFooterEntry', [
-            state('void', style({
+            state('mobile', style({
                 height: 0,
                 opacity: 0,
                 paddingBottom: 0,
                 paddingTop: 0
             })),
-            transition("* <=> void",
+            transition("mobile <=> regular",
                 animate("0.25s 0s cubic-bezier(0.165, 0.84, 0.44, 1)"))
         ])
     ]
 })
 export class DesktopFooterComponent implements OnInit {
 
-    constructor() {
+    constructor(public global: GlobalService) {
     }
 
     ngOnInit() {

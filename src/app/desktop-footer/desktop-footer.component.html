@@ -1,4 +1,4 @@
-<div class="wrapper" @desktopFooterEntry>
+<div class="wrapper" [@desktopFooterEntry]="global.breakpoint.handset ? 'mobile' : 'regular'">
     <div class="container">
         <p>Copyright &copy; 2018 Adithya Haridas</p>
     </div>

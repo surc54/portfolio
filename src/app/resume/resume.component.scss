@@ -11,12 +11,14 @@
     background: rgba(0, 0, 0, 0.1);
     color: #909090;
 
-    border-radius: 5px;
+    border-radius: 10px;
 
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+
+    overflow: hidden;
 
     > h2 {
         margin-bottom: 0px;
