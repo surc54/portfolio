@@ -2,6 +2,7 @@
 
 # compiled output
 /dist/portfolio
+/dist/node_modules
 /tmp
 /out-tsc
 
