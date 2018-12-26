@@ -32,4 +32,9 @@ export class SidenavComponent implements OnInit {
     ngOnInit() {
     }
 
+    backdropClick() {
+        if (this.global.sideNavStatus) {
+            this.global.toggleSideNav();
+        }
+    }
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import $ from 'jquery';
 import {Router} from '@angular/router';
 import {BreakpointService} from '../breakpoint.service';
@@ -10,32 +10,49 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     templateUrl: './toolbar.component.html',
     styleUrls: ['./toolbar.component.scss'],
     animations: [
-        trigger("menuButtonEntry", [
-            state("void", style({
+        trigger('menuButtonEntry', [
+            state('void', style({
                 opacity: 0,
-                transform: "translateX(-50px)",
+                transform: 'translateX(-50px)',
                 width: 0,
                 paddingRight: 0,
                 paddingLeft: 0,
                 marginRight: 0,
                 marginLeft: 0
             })),
-            transition(":enter", animate("0.25s 0s cubic-bezier(0.165, 0.84, 0.44, 1)")),
-            transition(":leave", animate("0.25s 0s cubic-bezier(0.165, 0.84, 0.44, 1)")),
+            transition(':enter',
+                animate('0.25s 0s cubic-bezier(0.165, 0.84, 0.44, 1)')),
+            transition(':leave',
+                animate('0.25s 0s cubic-bezier(0.165, 0.84, 0.44, 1)')),
         ]),
-        trigger("linksEntry", [
-            state("void", style({
+        trigger('linksEntry', [
+            state('void', style({
                 opacity: 0,
                 // transform: "translateX(100px)",
                 // width: 0,
             })),
-            transition(":enter", animate("0.25s 0s cubic-bezier(0.165, 0.84, 0.44, 1)")),
-            transition(":leave", animate("0.25s 0s cubic-bezier(0.165, 0.84, 0.44, 1)")),
+            transition(':enter',
+                animate('0.25s 0s cubic-bezier(0.165, 0.84, 0.44, 1)')),
+            transition(':leave',
+                animate('0.25s 0s cubic-bezier(0.165, 0.84, 0.44, 1)')),
         ]),
+        trigger('toolbarHide', [
+            state('hidden', style({
+                opacity: 0,
+                transform: 'translateY(-64px)'
+            })),
+            state("normal", style({
+                opacity: 1,
+                transform: "translateY(0)"
+            })),
+            transition('normal <=> hidden',
+                animate('0.25s 0s cubic-bezier(0.165, 0.84, 0.44, 1)'))
+        ])
     ]
 })
 export class ToolbarComponent implements OnInit {
 
+    @Input() hide = false;
 
     constructor(public router: Router, public breakpoint: BreakpointService,
                 public global: GlobalService) {

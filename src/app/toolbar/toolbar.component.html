@@ -1,4 +1,4 @@
-<mat-toolbar class="mat-elevation-z3" [class.dark]="global.dark" [color]="global.dark ? 'primary' : 'default'">
+<mat-toolbar class="mat-elevation-z3" [class.dark]="global.dark" [color]="global.dark ? 'primary' : 'default'" [@toolbarHide]="hide ? 'hidden' : 'normal'">
     <div [class.container]="!breakpoint.handset || true" [class.remove-left-padding]="breakpoint.handset" id="wrapper">
         <button mat-icon-button class="menu-btn" *ngIf="breakpoint.handset" (click)="global.toggleSideNav()" @menuButtonEntry aria-label="menu">
             <mat-icon>menu</mat-icon>

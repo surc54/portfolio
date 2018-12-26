@@ -23,6 +23,9 @@ div.container {
 
         p {
             color: #909090;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin: 0;
         }
 
         &.error {

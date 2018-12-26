@@ -1,5 +1,5 @@
-<app-toolbar></app-toolbar>
+<app-toolbar [hide]="router.url === '/'"></app-toolbar>
 <app-sidenav *ngIf="breakpoint.handset" @ngIfAnimation></app-sidenav>
-<div class="content">
+<div class="content" [class.removeTopMargin]="router.url === '/'">
     <router-outlet></router-outlet>
 </div>

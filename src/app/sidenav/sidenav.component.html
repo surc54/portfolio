@@ -1,4 +1,7 @@
-<div class="backdrop" *ngIf="global.sideNavStatus" @backdropAnimation></div>
+<div class="backdrop" *ngIf="global.sideNavStatus" @backdropAnimation
+(click)="backdropClick()">
+
+</div>
 
 <div class="wrapper mat-elevation-z2" *ngIf="global.sideNavStatus" @sideNavAnimation>
     <mat-action-list class="navlist">

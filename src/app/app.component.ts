@@ -1,6 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {BreakpointService} from './breakpoint.service';
 import {animateChild, query, transition, trigger} from '@angular/animations';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -16,7 +17,8 @@ import {animateChild, query, transition, trigger} from '@angular/animations';
 })
 export class AppComponent {
 
-    constructor(@Inject(BreakpointService) public breakpoint: BreakpointService) {
+    constructor(@Inject(BreakpointService) public breakpoint: BreakpointService,
+                public router: Router) {
     }
 
 
