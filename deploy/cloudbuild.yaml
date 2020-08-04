@@ -1,11 +1,18 @@
 steps:
   - name: node
+    timeout: 500s
     entrypoint: npm
     args: [ "install" ]
   - name: node
+    timeout: 500s
     entrypoint: npm
     args: [ "run", "build" ]
-artifacts:
-  objects:
-    location: "gs://surc.dev"
-    paths: [ "dist/" ]
+  - name: "gcr.io/cloud-builders/gsutil"
+    timeout: 10s
+    args: [ "-m", "rm", "gs://surc.dev/**"]
+  - name: "gcr.io/cloud-builders/gsutil"
+    timeout: 10s
+    args: [ "-m", "cp", "-r", "dist/**", "gs://surc.dev/"]
+  - name: "gcr.io/cloud-builders/gsutil"
+    timeout: 10s
+    args: [ "-h", '"Cache-Control:no-cache,max-age=0"', "-m", "cp", "-r", "dist/index.html", "gs://surc.dev/"]
