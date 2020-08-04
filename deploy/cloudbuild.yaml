@@ -14,7 +14,7 @@ steps:
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk:alpine"
     timeout: 10s
     entrypoint: gsutil
-    args: [ "-m", "cp", "-r", "dist/**", "gs://surc.dev"]
+    args: [ "-m", "cp", "-r", "dist/*", "gs://surc.dev"]
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk:alpine"
     timeout: 10s
     entrypoint: gsutil
