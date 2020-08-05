@@ -1,0 +1,16 @@
+@import './theme';
+
+html.md-theme-default {
+  font-family: "Roboto", sans-serif;
+  background: #1c1c1c;
+
+  body {
+    height: 100%;
+    font-size: 1rem;
+    background: #1c1c1c;
+
+    > div {
+      height: 100%;
+    }
+  }
+}

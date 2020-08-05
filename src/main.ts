@@ -3,6 +3,7 @@ import App from './App.vue'
 // import './registerServiceWorker' // disabled for now
 import router from './router'
 import store from './store'
+import './material'
 
 Vue.config.productionTip = false
 
