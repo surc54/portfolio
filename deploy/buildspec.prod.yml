@@ -15,7 +15,7 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Uploading to S3 Bucket
-      - aws s3 sync --delete --cache-control max-age=0,no-cache,no-store,must-revalidate dist/ "s3://${DEPLOYMENT_BUCKET}/me"
+      - aws s3 sync --delete --cache-control max-age=0,no-cache,no-store,must-revalidate build/ "s3://${DEPLOYMENT_BUCKET}/me"
       - echo Upload completed on `date`
       - echo Creating cache invalidation
       - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
