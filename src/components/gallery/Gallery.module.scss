@@ -1,0 +1,64 @@
+.wrapper {
+    position: relative;
+
+    .images {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: stretch;
+        align-items: center;
+
+        // will-change: transform;
+
+        // overflow-x: hidden;
+        overflow-x: scroll;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE 10+ */
+
+        &::-webkit-scrollbar {
+            /* WebKit */
+            width: 0px;
+        }
+
+        position: relative;
+
+        > div {
+            flex-shrink: 0;
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .button {
+        position: absolute;
+        top: calc(50% - 24px);
+        z-index: 100;
+
+        transition: opacity 0.5s;
+
+        background: white;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        &:disabled {
+            background: #eee;
+        }
+
+        &:global(.disabled) {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        &Left {
+            left: 10px;
+        }
+
+        &Right {
+            right: 10px;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+div.wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+
+    // max-height: calc(100% - 64px);
+    // overflow-y: auto;
+
+    padding: 30px 20px;
+
+    > * {
+        margin: 5px;
+    }
+}

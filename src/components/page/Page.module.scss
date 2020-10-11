@@ -1,0 +1,94 @@
+.wrapper {
+    height: 100%;
+
+    &:global(.anim-comp) {
+        &:global(-appear) {
+            transform: translateX(200px);
+            opacity: 0;
+        }
+
+        &:global(-appear-active) {
+            opacity: 1;
+            transform: translateX(0);
+            transition: transform 0.25s, opacity 0.25s;
+        }
+
+        &:global(-enter) {
+            transform: translateX(200px);
+            opacity: 0;
+        }
+
+        &:global(-enter-active) {
+            opacity: 1;
+            transform: translateX(0);
+            transition: transform 0.25s, opacity 0.25s;
+        }
+
+        &:global(-exit) {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        &:global(-exit-active) {
+            transform: translateX(200px);
+            opacity: 0;
+            transition: transform 0.25s, opacity 0.25s;
+        }
+    }
+
+    &:global(.anim-comp-minimal) {
+        &:global(-appear) {
+            opacity: 1;
+        }
+
+        &:global(-appear-active) {
+            opacity: 1;
+            transition: transform 0.25s, opacity 0.25s;
+        }
+
+        &:global(-enter) {
+            opacity: 1;
+            // transform: translateX(100px);
+        }
+
+        &:global(-enter-active) {
+            opacity: 1;
+            // transform: translateX(0);
+            transition: transform 0.25s, opacity 0.25s;
+        }
+
+        &:global(-exit) {
+            opacity: 1;
+            // transform: translateX(0);
+        }
+
+        &:global(-exit-active) {
+            opacity: 0;
+            // transform: translateX(-100px);
+            transition: transform 0.25s, opacity 0.25s;
+        }
+    }
+
+    .container {
+        height: 100%;
+
+        &.small {
+            margin: 0;
+            padding: 0;
+
+            .paper {
+                padding: 64px 16px;
+            }
+        }
+
+        .paper {
+            height: 100%;
+            overflow-y: scroll;
+            padding: 64px 52px;
+
+            .headerBottom {
+                margin-top: 20px;
+            }
+        }
+    }
+}

@@ -1,0 +1,153 @@
+.pdfWrapper {
+    background: #eee;
+    min-height: 500px;
+    max-height: 70vh;
+    height: 100vh;
+    width: 100%;
+
+    border-radius: 10px;
+    overflow: hidden;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    div.errorWrapper {
+        padding: 0 16px;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+
+        > *:not(:first-child) {
+            margin-top: 10px;
+        }
+
+        &:global(-enter) {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        &:global(-enter-active) {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.25s, transform 0.25s;
+        }
+
+        &:global(-exit) {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        &:global(-exit-active) {
+            opacity: 0;
+            transform: scale(1.5);
+            transition: opacity 0.25s, transform 0.25s;
+        }
+    }
+
+    > .pdfObject {
+        height: 100%;
+        width: 100%;
+
+        &:global(-enter) {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        &:global(-enter-active) {
+            opacity: 1;
+            transform: scale(1);
+            // transition: opacity 0.25s, transform 0.25s;
+        }
+
+        &:global(-exit) {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        &:global(-exit-active) {
+            opacity: 0;
+            transform: scale(1.5);
+            // transition: opacity 0.25s, transform 0.25s;
+        }
+    }
+
+    > div.progressWrapper {
+        padding: 20px 40px;
+        overflow: hidden;
+        width: 100%;
+        align-self: stretch;
+
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: stretch;
+
+        .progressBar {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            margin: 0 auto 5px auto;
+        }
+
+        &:global(-enter) {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        &:global(-enter-active) {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.25s, transform 0.25s;
+        }
+
+        &:global(-exit) {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        &:global(-exit-active) {
+            opacity: 0;
+            transform: scale(1.5);
+            transition: opacity 0.25s, transform 0.25s;
+        }
+    }
+}
+
+.loading {
+}
+
+.actions {
+    margin-top: 10px;
+
+    .updatedText {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .buttons {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        align-items: center;
+
+        > *:not(:last-child) {
+            margin-right: 5px;
+        }
+    }
+}

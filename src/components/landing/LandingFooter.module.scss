@@ -1,0 +1,14 @@
+.wrapper {
+    background: #efefef;
+    height: 55px;
+
+    .container {
+        height: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 0 24px;
+    }
+}

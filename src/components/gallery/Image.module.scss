@@ -1,0 +1,217 @@
+@import "../../tools";
+
+div.wrapper {
+    overflow: hidden;
+    width: 350px;
+    height: 400px;
+    position: relative;
+
+    border-radius: 5px;
+
+    div.image {
+        width: 100%;
+        height: 100%;
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+
+        transition: transform 0.5s;
+
+        @at-root div.wrapper:hover div.image:not(.noZoom) {
+            transform: scale(1.2);
+        }
+
+        &:global(-enter),
+        &:global(-active) {
+            opacity: 0;
+            transform: scale(0.75);
+
+            &:global(-active) {
+                opacity: 1;
+                transform: scale(1);
+                transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
+            }
+        }
+
+        &:global(-exit) {
+            opacity: 1;
+            transform: scale(1);
+
+            &:global(-active) {
+                opacity: 0;
+                transform: scale(0.75);
+                transition: opacity 0.5s, transform 0.5s;
+            }
+        }
+    }
+
+    div.overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+
+        border-radius: 5px;
+
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        backdrop-filter: blur(5px);
+
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+
+        opacity: 0;
+        transition: opacity 0.5s;
+
+        @at-root div.wrapper:hover div.overlay {
+            opacity: 1;
+        }
+
+        &:global(.disabled) {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    div.error {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+
+        &:global(-enter) {
+            opacity: 0;
+            transform: scale(0.5);
+
+            &:global(-active) {
+                opacity: 1;
+                transform: scale(1);
+                transition: opacity 0.5s, transform 0.5s;
+            }
+        }
+
+        &:global(-exit) {
+            opacity: 1;
+            transform: scale(1);
+
+            &:global(-active) {
+                opacity: 0;
+                transform: scale(0.5);
+                transition: opacity 0.5s, transform 0.5s;
+            }
+        }
+    }
+
+    div.loading {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+
+        &:global(-exit) {
+            opacity: 1;
+
+            &:global(-active) {
+                opacity: 0;
+                transform: scale(3);
+                transition: opacity 0.5s, transform 0.5s;
+            }
+        }
+
+        &:global(-enter) {
+            opacity: 0;
+            transform: scale(3);
+
+            &:global(-active) {
+                opacity: 1;
+                transform: scale(1);
+                transition: opacity 0.5s, transform 0.5s;
+            }
+        }
+    }
+}
+
+div.fsRoot {
+    position: fixed;
+    z-index: 1100;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    background: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+
+    transition: all 0.5s;
+
+    > div:first-child {
+        height: 100vh;
+        width: 100vw;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+
+        // transition: transform 0.1s;
+    }
+
+    .fsClose {
+        background: linear-gradient(to bottom, #f13838, #842222);
+        border: 2px white solid;
+        color: white;
+
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1100;
+    }
+
+    &:global(-enter) {
+        opacity: 0;
+        border-radius: 5px;
+        overflow: hidden;
+
+        &:global(-active) {
+            opacity: 1;
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        // &:global(-done) {
+        //     // overflow: auto;
+        // }
+    }
+
+    &:global(-exit) {
+        opacity: 1;
+        border-radius: 0;
+        overflow: hidden;
+
+        &:global(-active) {
+            opacity: 0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+    }
+}

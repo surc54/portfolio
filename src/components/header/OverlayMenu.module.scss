@@ -1,0 +1,64 @@
+.menuWrapper {
+    .paper {
+        padding: 64px 32px;
+
+        .header {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: stretch;
+            align-items: center;
+        }
+
+        .menuButton {
+            justify-content: flex-start;
+            min-height: 70px;
+            margin-top: 10px;
+
+            &:first-child {
+                margin-top: 20px;
+            }
+        }
+
+        &:global(-enter),
+        &:global(-appear) {
+            transform: translateY(-200px);
+        }
+
+        &:global(-enter-active),
+        &:global(-appear-active) {
+            transform: translateY(0);
+
+            transition: opacity 0.25s, transform 0.25s;
+        }
+
+        &:global(-exit) {
+            transform: translateY(0);
+        }
+
+        &:global(-exit-active) {
+            transform: translateY(-200px);
+
+            transition: opacity 0.25s, transform 0.25s;
+        }
+    }
+
+    &:global(-enter) {
+        opacity: 0;
+    }
+
+    &:global(-enter-active) {
+        opacity: 1;
+
+        transition: opacity 0.25s, transform 0.25s;
+    }
+
+    &:global(-exit) {
+        opacity: 1;
+    }
+
+    &:global(-exit-active) {
+        opacity: 0;
+
+        transition: opacity 0.25s, transform 0.25s;
+    }
+}

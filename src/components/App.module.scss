@@ -1,0 +1,34 @@
+.componentAnim {
+    &:global(-appear) {
+        transform: scale(0.75);
+        opacity: 0;
+    }
+
+    &:global(-appear-active) {
+        transform: scale(1);
+        opacity: 1;
+        transition: opacity 0.25s, transform 0.25s;
+    }
+
+    &:global(-enter) {
+        transform: scale(0.75);
+        opacity: 0;
+    }
+
+    &:global(-enter-active) {
+        transform: scale(1);
+        opacity: 1;
+        transition: opacity 0.25s, transform 0.25s;
+    }
+
+    &:global(-exit) {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    &:global(-exit-active) {
+        transform: scale(1.5);
+        opacity: 0;
+        transition: opacity 0.25s, transform 0.25s;
+    }
+}

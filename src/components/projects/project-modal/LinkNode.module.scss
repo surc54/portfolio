@@ -1,0 +1,27 @@
+button.buttonBase,
+a.buttonBase {
+    border-radius: 5px;
+    overflow: hidden;
+
+    .linkNode {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+
+        padding: 0 16px;
+        min-height: 48px;
+
+        border-radius: 5px;
+        border: solid 1px #cbcbcb;
+
+        font-size: 16px;
+        font-weight: 500;
+
+        transition: background-color 0.25s;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+    }
+}

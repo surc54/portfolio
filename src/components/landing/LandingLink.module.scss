@@ -1,0 +1,11 @@
+.button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    justify-content: flex-start;
+    height: 70px;
+
+    &:not(:first-child) {
+        margin-top: 12px;
+    }
+}

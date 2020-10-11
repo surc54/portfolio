@@ -1,0 +1,202 @@
+@import "../../tools";
+.categories {
+    padding-top: 10px;
+
+    .pickerWrapper {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: stretch;
+        align-items: center;
+
+        margin-bottom: 20px;
+    }
+
+    .listName {
+        color: #757575;
+    }
+
+    .categoryList {
+        .categoryListItem {
+            border-top-left-radius: 50px;
+            border-bottom-left-radius: 50px;
+            overflow: hidden;
+
+            &:global(.small) {
+                border-radius: 50px;
+            }
+
+            &.selected {
+                background-color: rgba(255, 102, 0, 0.3);
+            }
+        }
+    }
+}
+
+div.details {
+    // background: #f2f2f2;
+    height: 80vh;
+    min-height: 300px;
+
+    border: 1px #e1e1e1 solid;
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    &.small {
+        height: calc(80vh - 115px);
+    }
+
+    .container {
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        padding-top: 32px;
+        padding-bottom: 32px;
+
+        height: inherit;
+        min-height: inherit;
+    }
+
+    .linkPaper {
+        padding: 15px 20px;
+        margin-bottom: 10px;
+
+        transition: box-shadow 0.25s, transform 0.25s;
+
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: stretch;
+        align-items: center;
+
+        cursor: pointer;
+        user-select: none;
+
+        &:global(-enter) {
+            // transform: translateX(50px) scaleY(0);
+            // opacity: 0;
+            // max-height: 0;
+            // padding: 0;
+            // opacity: 0;
+            // margin: 0;
+        }
+
+        &:global(-enter-active) {
+            // transform: translateX(0) scaleY(1);
+            // opacity: 1;
+            // max-height: 100px;
+            // padding: 15px 20px;
+            // margin-bottom: 10px;
+
+            // transition: transform 0.25s, opacity 0.25s;
+            // transition-delay: var(--t-delay);
+            opacity: 0;
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-bottom: 0;
+
+            animation: linkCardJoin 0.25s $animationTiming;
+            animation-delay: var(--t-delay);
+            animation-fill-mode: forwards;
+
+            // + .linkPaper:not(.linkPaper ~ .linkPaper) {
+            //     transform: translateY(100px);
+            //     transition: transform 0.25s;
+            // }
+        }
+
+        &:global(-exit) {
+            // transform: translateX(0) scaleY(1);
+            // opacity: 1;
+            // max-height: 300px;
+        }
+
+        &:global(-exit-active) {
+            // transform: translateX(50px) scaleY(0);
+            // opacity: 0;
+            // max-height: 0;
+            // padding: 0;
+            // margin: 0;
+
+            // transition: all 0.25s;
+            // transition-delay: var(--t-delay);
+
+            animation: linkCardLeave 0.25s $animationTiming;
+            animation-delay: var(--t-delay);
+            animation-fill-mode: forwards;
+
+            // + .linkPaper:not(.linkPaper ~ .linkPaper) {
+            //     transform: translateY(-100px);
+            //     transition: transform 0.25s;
+            // }
+            // transition: transform 0.25s, opacity 0.25s, max-height 0.25s;
+        }
+
+        .linkDetails {
+            max-width: 70%;
+            .linkHref {
+                color: rgba(0, 0, 0, 0.5);
+                margin-right: 0;
+            }
+        }
+
+        &:hover {
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+                0 10px 10px rgba(0, 0, 0, 0.22);
+            z-index: 100;
+            transform: scale(1.01);
+            position: relative;
+        }
+    }
+}
+
+@keyframes linkCardLeave {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+        max-height: 100px;
+    }
+    50% {
+        transform: translateX(50px);
+        opacity: 0;
+        max-height: 100px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-bottom: 10px;
+    }
+    to {
+        transform: translateX(50px);
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+}
+
+@keyframes linkCardJoin {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+    50% {
+        transform: translateX(50px);
+        opacity: 0;
+        max-height: 100px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-bottom: 10px;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-bottom: 10px;
+        max-height: 100px;
+    }
+}
