@@ -7,7 +7,7 @@
     <div class="flex-1 mx-3">
       <sidebar-item icon="recent_actors" to="/resume" active>Resume</sidebar-item>
       <sidebar-item icon="assignment" to="/portfolio">Portfolio</sidebar-item>
-      <sidebar-item to="https://www.github.com/surc54" external>Github</sidebar-item>
+      <sidebar-item to="https://www.github.com/surc54" external>GitHub</sidebar-item>
       <sidebar-item to="https://www.linkedin.com/in/surc" external>LinkedIn</sidebar-item>
     </div>
 
