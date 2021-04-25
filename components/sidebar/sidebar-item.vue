@@ -1,5 +1,10 @@
 <template>
-  <button class="flex items-center w-full p-3 rounded-lg border-gray-200 border hover:shadow-md transition-all">
+  <s-link
+    :to="to"
+    :external="external"
+    class="flex items-center w-full my-1 p-3 border border-transparent rounded-lg hover:shadow-md transition-all"
+    :class="{ 'border-blue-500 shadow-lg': active }"
+  >
     <div
       class="flex items-center justify-center w-8 h-8 mr-3 rounded-md shadow-md bg-gradient-to-br from-blue-500 to-purple-500 text-white"
       :class="{ 'opacity-0': !icon }"
@@ -9,7 +14,7 @@
     <p class="font-medium text-base">
       <slot />
     </p>
-  </button>
+  </s-link>
 </template>
 
 <script>
@@ -18,7 +23,10 @@ export default {
     icon: {
       type: String,
       default: 'info'
-    }
+    },
+    active: Boolean,
+    to: String,
+    external: Boolean
   }
 }
 </script>

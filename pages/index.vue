@@ -1,7 +1,11 @@
 <template>
-  <div class="container">Index page</div>
+  <div />
 </template>
 
 <script>
-export default {}
+export default {
+  mounted () {
+    this.$router.push('/resume')
+  }
+}
 </script>

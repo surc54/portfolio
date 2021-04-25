@@ -1,8 +1,14 @@
 <template>
   <div class="flex flex-col flex-nowrap h-full pt-4 bg-white">
-    <div class="flex-1  mx-3">
-      <sidebar-item class="my-1" icon="recent_actors">Resume</sidebar-item>
-      <sidebar-item class="my-1" icon="assignment">Portfolio</sidebar-item>
+    <h1 class="mx-3 my-6 text-lg font-bold">
+      Adithya Haridas
+    </h1>
+
+    <div class="flex-1 mx-3">
+      <sidebar-item icon="recent_actors" to="/resume" active>Resume</sidebar-item>
+      <sidebar-item icon="assignment" to="/portfolio">Portfolio</sidebar-item>
+      <sidebar-item to="https://www.github.com/surc54" external>Github</sidebar-item>
+      <sidebar-item to="https://www.linkedin.com/in/surc" external>LinkedIn</sidebar-item>
     </div>
 
     <sidebar-footer />
