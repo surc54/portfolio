@@ -1,0 +1,396 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+#
+# RESOURCES
+#
+Resources:
+  #
+  # UI BUCKET
+  #
+  UIBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      AccessControl: PublicRead
+      BucketName: www.surc.dev
+      WebsiteConfiguration:
+        ErrorDocument: index.html
+        IndexDocument: index.html
+
+  #
+  # UI BUCKET POLICY
+  #
+  UIBucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Ref UIBucket
+      PolicyDocument:
+        Statement:
+          - Action:
+              - 's3:GetObject'
+            Effect: Allow
+            Principal: '*'
+            Resource: !Join
+              - ''
+              - - !GetAtt UIBucket.Arn
+                - /*
+
+  #
+  # UI SSL CERTIFICATE (disabled because using imported ssl from parameters)
+  #
+  # UICertificate:
+  #   Type: 'AWS::CertificateManager::Certificate'
+  #   Properties:
+  #     DomainName: www.surc.dev
+  #     ValidationMethod: DNS
+  #     DomainValidationOptions:
+  #       - DomainName: www.surc.dev
+  #         ValidationDomain: surc.dev
+  #   Metadata:
+  #     'AWS::CloudFormation::Designer':
+  #       id: 98ab6deb-1bd5-4046-b64e-52d11af0a3a9
+
+  #
+  # UI CLOUDFRONT DISTRIBUTION
+  #
+  UICloudFrontDistro:
+    Type: 'AWS::CloudFront::Distribution'
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Aliases:
+          - www.surc.dev
+        CustomErrorResponses:
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: '/index.html'
+        CacheBehaviors:
+          - AllowedMethods:
+              - GET
+              - HEAD
+            CachedMethods:
+              - GET
+              - HEAD
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+            PathPattern: '*'
+            ViewerProtocolPolicy: redirect-to-https
+            TargetOriginId: s3-website
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - GET
+            - HEAD
+          CachedMethods:
+            - GET
+            - HEAD
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          ViewerProtocolPolicy: redirect-to-https
+          TargetOriginId: s3-website
+        DefaultRootObject: index.html
+        IPV6Enabled: true
+        HttpVersion: http2
+        Origins:
+          - CustomOriginConfig:
+              OriginProtocolPolicy: http-only
+            DomainName: !GetAtt UIBucket.DomainName
+            Id: s3-website
+        PriceClass: PriceClass_100
+        ViewerCertificate:
+          AcmCertificateArn: !Ref UICertificate
+          MinimumProtocolVersion: TLSv1.2_2019
+          SslSupportMethod: sni-only
+
+  #
+  # PIPELINE ARTIFACT BUCKET
+  #
+  PipelineArtifactBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      AccessControl: BucketOwnerRead
+      BucketName: !Join
+        - ''
+        - - 'portfolio-pipeline-artifacts-'
+          - !Ref Timestamp
+      VersioningConfiguration:
+        Status: Enabled
+
+  #
+  # PIPELINE ARTIFACT BUCKET POLICY
+  #
+  PipelineArtifactBucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Ref PipelineArtifactBucket
+      PolicyDocument:
+        Statement:
+          - Action:
+              - 's3:PutObject'
+              - 's3:GetObject'
+              - 's3:GetObjectVersion'
+            Principal:
+              AWS:
+                - !GetAtt PipelineRole.Arn
+            Resource: !Join
+              - ''
+              - - !GetAtt PipelineArtifactBucket.Arn
+                - /*
+            Effect: Allow
+
+  #
+  # PIPELINE IAM ROLE
+  #
+  PipelineRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      Description: Role for the portfolio's prod pipeline
+      Path: /
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - codepipeline.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Policies:
+        - PolicyName: PipelineRolePolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetObjectAcl
+                  - s3:GetObject
+                  - s3:GetObjectVersionTagging
+                  - s3:PutObjectVersionAcl
+                  - s3:GetObjectVersionAcl
+                  - s3:PutObjectAcl
+                  - s3:GetObjectVersion
+                Resource:
+                  - !Join
+                    - ''
+                    - - !GetAtt PipelineArtifactBucket.Arn
+                      - '/*'
+                  - !GetAtt PipelineArtifactBucket.Arn
+              - Effect: Allow
+                Action:
+                  - 'codestar-connections:PassConnection'
+                  - 'codestar-connections:GetConnection'
+                  - 'codestar-connections:UseConnection'
+                Resource: !Ref GithubConnectionArn
+              - Effect: Allow
+                Action:
+                  - codebuild:BatchGetBuilds
+                  - codebuild:StartBuild
+                  - codebuild:BatchGetBuildBatches
+                  - codebuild:StartBuildBatch
+                Resource: '*'
+
+  #
+  # CODEBUILD ROLE
+  #
+  BuildUIRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      Description: Role for the Portfolio's CodeBuild
+      Path: /
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - codebuild.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Policies:
+        - PolicyName: CodeBuildRolePolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetBucketAcl
+                  - s3:GetBucketLocation
+                  - s3:GetObject
+                  - s3:GetObjectAcl
+                  - s3:GetObjectVersion
+                  - s3:GetObjectVersionAcl
+                  - s3:GetObjectVersionTagging
+                  - s3:PutObject
+                  - s3:DeleteObject
+                Resource:
+                  - !Join
+                    - ''
+                    - - !GetAtt PipelineArtifactBucket.Arn
+                      - '/*'
+                  - !GetAtt PipelineArtifactBucket.Arn
+                  - !Join
+                    - ''
+                    - - !GetAtt UIBucket.Arn
+                      - '/*'
+                  - !GetAtt UIBucket.Arn
+              - Effect: Allow
+                Action:
+                  - codebuild:CreateReportGroup
+                  - codebuild:CreateReport
+                  - codebuild:UpdateReport
+                  - codebuild:BatchPutTestCases
+                  - codebuild:BatchPutCodeCoverages
+                Resource: !Join
+                  - ''
+                  - - 'arn:aws:codebuild:us-east-1:'
+                    - !Ref AWS::AccountId
+                    - :report-group/
+                    - PortfolioBuild
+                    - '-*'
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource:
+                  - !Join
+                    - ''
+                    - - 'arn:aws:logs:us-east-1:'
+                      - !Ref AWS::AccountId
+                      - :log-group:/aws/codebuild/
+                      - PortfolioBuild
+                  - !Join
+                    - ''
+                    - - 'arn:aws:logs:us-east-1:'
+                      - !Ref AWS::AccountId
+                      - :log-group:/aws/codebuild/
+                      - PortfolioBuild
+                      - ':*'
+              - Effect: Allow
+                Action:
+                  - cloudfront:CreateInvalidation
+                Resource:
+                  - !Join
+                    - ''
+                    - - 'arn:aws:cloudfront::'
+                      - !Ref AWS::AccountId
+                      - :distribution/
+                      - !Ref UICloudFrontDistro
+
+  #
+  # CODEBUILD PROJECT
+  #
+  BuildUI:
+    Type: 'AWS::CodeBuild::Project'
+    Properties:
+      Description: "Build Portfolio's UI"
+      Name: PortfolioBuild
+      Artifacts:
+        Type: CODEPIPELINE
+        EncryptionDisabled: false
+      ServiceRole: !GetAtt BuildUIRole.Arn
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: 'deploy/buildspec.prod.yml'
+        InsecureSsl: false
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Type: LINUX_CONTAINER
+        EnvironmentVariables:
+          - Name: DEPLOYMENT_BUCKET
+            Type: PLAINTEXT
+            Value: !Ref UIBucket
+          - Name: DISTRIBUTION_ID
+            Type: PLAINTEXT
+            Value: !Ref UICloudFrontDistro
+        Image: !Ref CodeBuildImage
+        ImagePullCredentialsType: CODEBUILD
+      QueuedTimeoutInMinutes: 480
+      TimeoutInMinutes: 5
+
+
+  #
+  # PIPELINE
+  #
+  Pipeline:
+    Type: 'AWS::CodePipeline::Pipeline'
+    Properties:
+      Name: PortfolioPipeline
+      RoleArn: !GetAtt PipelineRole.Arn
+      ArtifactStore:
+        Type: S3
+        Location: !Ref PipelineArtifactBucket
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: Clone
+              RunOrder: 1
+              ActionTypeId:
+                Category: Source
+                Owner: AWS
+                Provider: CodeStarSourceConnection
+                Version: '1'
+              Configuration:
+                ConnectionArn: !Ref GithubConnectionArn
+                FullRepositoryId: !Ref GitRepo
+                BranchName: !Ref GitBranch
+              OutputArtifacts:
+                - Name: Code
+        - Name: Build
+          Actions:
+            - Name: Build
+              RunOrder: 2
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Provider: CodeBuild
+                Version: '1'
+              Configuration:
+                ProjectName: !Ref BuildUI
+                PrimarySource: Code
+              InputArtifacts:
+                - Name: Code
+              OutputArtifacts:
+                - Name: CodeBuildOutput
+      RestartExecutionOnUpdate: true
+
+#
+# OUTPUTS
+#
+Outputs:
+  S3WebsiteURL:
+    Value: !GetAtt UIBucket.WebsiteURL
+    Description: URL for website hosted on S3
+  S3BucketSecureURL:
+    Value: !Join
+      - ''
+      - - 'https://'
+        - !GetAtt UIBucket.DomainName
+    Description: Name of S3 bucket to hold website content
+  CloudFrontURL:
+    Value: !Join
+      - ''
+      - - 'https://'
+        - !GetAtt UICloudFrontDistro.DomainName
+    Description: CloudFront URL
+
+#
+# PARAMETERS
+#
+Parameters:
+  GithubConnectionArn:
+    Description: Github Connection ARN
+    Type: String
+  GitRepo:
+    Description: Github source repository
+    Type: String
+  GitBranch:
+    Description: Github source branch
+    Type: String
+  CodeBuildImage:
+    Description: CodeBuild image
+    Type: String
+    Default: aws/codebuild/standard:5.0
+  UICertificate:
+    Description: www.surc.dev SSL ARN
+    Type: String
+  Timestamp:
+    Description: Number to guarantee unique names
+    Type: String
