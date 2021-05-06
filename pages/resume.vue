@@ -1,5 +1,8 @@
 <template>
-  <unavailable />
+  <iframe
+    class="w-full h-full"
+    src="/resume.pdf"
+  />
 </template>
 
 <script>
