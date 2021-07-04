@@ -1,12 +1,9 @@
 {
   "name": "portfolio",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "private": true,
   "description": "Portfolio",
   "author": "Adithya Haridas",
-  "keywords": [
-    "gatsby"
-  ],
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
