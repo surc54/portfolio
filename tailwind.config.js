@@ -1,5 +1,7 @@
+const isProduction = process.env.NODE_ENV === 'production'
+
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}'],
+  purge: isProduction ? ['./src/**/*.{js,jsx,ts,tsx}'] : [],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {}

@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Portfolio'
+    title: 'Adithya Haridas - Portfolio'
   },
   plugins: ['gatsby-plugin-postcss', 'gatsby-plugin-react-helmet']
 }
