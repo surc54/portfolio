@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 
 const PERSON_NAME = "Adithya Haridas"
 const GITHUB_URL = 'https://www.github.com/surc54'
-const LINKEDIN_URL = 'https://www.linkedin.com/in/surc'
+const LINKEDIN_URL = 'https://www.linkedin.com/in/adithyah54'
 
 const IndexPage = () => {
   return (
